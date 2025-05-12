@@ -3,38 +3,232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Про нас - Допомога при залежності від гаджетів</title>
+    <title>Про нас — Допомога при залежності від гаджетів</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
+    <style>
+         body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #e2e8f0;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        nav {
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .burger {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .burger div {
+            width: 25px;
+            height: 3px;
+            background: #e2e8f0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: #1e293b;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            transform: translateY(-20px);
+            opacity: 0;
+            visibility: hidden;
+            transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .menu.active {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+        .menu a {
+            display: block;
+            padding: 1rem 2rem;
+            color: #e2e8f0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+        .menu a:hover {
+            background: #10b981;
+        }
+        footer {
+            background: #1e293b;
+            text-align: center;
+            padding: 2rem;
+            color: #94a3b8;
+        }
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(135deg, #1e3a8a, #10b981);
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.15), transparent);
+            z-index: 0;
+        }
+        .hero-content {
+            z-index: 1;
+            animation: fadeIn 1.5s ease-in-out;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 2.5rem;
+            border-radius: 12px;
+        }
+        #phone-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.3;
+        }
+        .section {
+            padding: 5rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .card {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+        }
+        .emoji {
+            display: inline-block;
+            font-size: 2rem;
+            margin-right: 0.5rem;
+            animation: pulse 2s infinite ease-in-out;
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+            max-width: 560px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .gallery-img {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        @media (max-width: 640px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1rem; }
+            .section { padding: 3rem 1rem; }
+            .emoji { font-size: 1.5rem; }
+            .btn { padding: 0.5rem 1rem; font-size: 0.9rem; }
+        }
+    </style>
 </head>
 <body>
     <!-- Навігація -->
-    <nav class="flex justify-center bg-gray-800 p-4">
-        <a href="index.html" class="text-white mx-4">Головна</a>
-        <a href="about.html" class="text-white mx-4">Про нас</a>
-        <a href="recommendations.html" class="text-white mx-4">Рекомендації</a>
-        <a href="contacts.html" class="text-white mx-4">Контакти</a>
+    <nav>
+        <h1 class="text-xl font-bold text-white">FSMP 114</h1>
+        <div class="burger" id="burger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="menu" id="menu">
+            <a href="index.html">Головна</a>
+            <a href="about.html">Про нас</a>
+            <a href="recommendations.html">Рекомендації</a>
+            <a href="contacts.html">Контакти</a>
+        </div>
     </nav>
 
     <!-- Про нас -->
-    <section class="py-20 bg-gray-100">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-6">Про наш проєкт</h2>
-            <p class="text-lg text-gray-700 mb-6 text-center">
-                Залежність від гаджетів — це виклик сучасного світу, який впливає на здоров’я, стосунки та продуктивність. Ми віримо, що кожен заслуговує жити повноцінним життям, не будучи прив’язаним до екранів.
-            </p>
-            <p class="text-lg text-gray-700 mb-6 text-center">
-                Наш проєкт створений, щоб надати прості, але дієві рекомендації для зменшення залежності, а також спрямувати тих, хто потребує професійної допомоги, до спеціалізованих закладів.
-            </p>
-            <p class="text-lg text-gray-700 mb-6 text-center">
-                Ми не лікарі, але ми — небайдужі студенти, які хочуть зробити внесок у добробут суспільства.
-            </p>
-        </div>
+    <section class="section">
+        <h2 class="text-4xl font-bold text-center mb-8">Про наш проєкт</h2>
+        <p class="text-lg text-gray-300 mb-6 text-center">
+            Залежність від гаджетів — це виклик сучасного світу, який впливає на здоров’я, стосунки та продуктивність. Ми віримо, що кожен заслуговує жити повноцінним життям, не будучи прив’язаним до екранів.
+        </p>
+        <p class="text-lg text-gray-300 mb-6 text-center">
+            Наш проєкт створений, щоб надати прості, але дієві рекомендації для зменшення залежності, а також спрямувати тих, хто потребує професійної допомоги, до спеціалізованих закладів.
+        </p>
+        <p class="text-lg text-gray-300 mb-6 text-center">
+            Ми не лікарі, але ми — небайдужі студенти, які хочуть зробити внесок у добробут суспільства.
+        </p>
+    </section>
+
+    <!-- Вступ -->
+    <section class="section bg-gray-900">
+        <h2 class="text-4xl font-bold text-center mb-8">Вступ</h2>
+        <p class="text-lg text-gray-300 mb-6">
+            У зв'язку зі <span class="highlight">стрімким розвитком Інтернет-технологій</span>, штучного інтелекту поширення й особливої актуальності натепер набуває проблема гаджет-залежності. Залежність від мобільного телефону (смартфону) є найпоширенішою формою гаджет-адикції, що неофіційно визнана хворобою ХХІ століття.
+        </p>
+        <p class="text-lg text-gray-300 mb-6">
+            Гаджети та Інтернет-технології стали невід'ємною частиною життя сучасної людини, надаючи <span class="highlight">практично необмежений доступ до інформації</span> та розваг. Незважаючи на це, зловживання користуванням гаджетами може перерости в залежність і мати багато шкідливих наслідків для людини.
+        </p>
+        <p class="text-lg text-gray-300 mb-6">
+            Особливо уразливими до формування різних залежностей вважаються <span class="highlight">підлітки</span>, що зумовлено соціально-психологічними особливостями розвитку на даному етапі онтогенезу. Унаслідок формування гаджет-залежності у підлітка можуть з'являтись <span class="highlight">психосоматичні розлади</span>, соціальна дезадаптація та особистісні деформації.
+        </p>
     </section>
 
     <!-- Футер -->
-    <footer class="bg-gray-800 text-white text-center py-4">
-        <p>&copy; 2025 Допомога при залежності від гаджетів. Усі права захищено.</p>
+    <footer>
+        <p>© 2025 FSMP 114. Створено студентами НУ "Одеська юридична академія".</p>
     </footer>
+
+    <script>
+        // Логіка для кнопки-бургера
+        const burger = document.getElementById('burger');
+        const menu = document.getElementById('menu');
+    
+        burger.addEventListener('click', () => {
+            menu.classList.toggle('active'); // Додає або видаляє клас 'active' для меню
+        });
+    </script>
 </body>
 </html>
