@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="uk">
+<ht lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -170,8 +170,79 @@
             .btn { padding: 0.5rem 1rem; font-size: 0.9rem; }
         }
     </style>
+    <style>
+    .theme-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 30px;
+        background-color: #10b981;
+        border-radius: 30px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    .theme-toggle.light {
+        background-color: #fbbf24;
+    }
+    .theme-toggle .toggle-icon {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: #ffffff;
+        border-radius: 50%;
+        transition: transform 0.3s ease;
+    }
+    .theme-toggle.dark .toggle-icon {
+        transform: translateX(-15px); /* Початкове положення для темної теми */
+    }
+    .theme-toggle.light .toggle-icon {
+        transform: translateX(15px); /* Положення для світлої теми */
+    }
+    .theme-toggle .icon {
+        position: absolute;
+        font-size: 12px;
+        color: #ffffff;
+        pointer-events: none;
+    }
+    .theme-toggle .icon.sun {
+        left: 5px;
+    }
+    .theme-toggle .icon.moon {
+        right: 5px;
+    }
+</style>
+<style>
+    body.light {
+        background-color: #ffffff;
+        color: #000000; /* Чорний текст для всього тіла */
+    }
+    nav.light {
+        background: rgba(255, 255, 255, 0.9);
+        color: #000000; /* Чорний текст для навігації */
+    }
+    footer.light {
+        background: #ffffff;
+        color: #000000; /* Чорний текст для футера */
+    }
+    .card.light {
+        background: #ffffff;
+        color: #000000; /* Чорний текст для карток */
+    }
+    .hero-content.light {
+        color: #000000; /* Чорний текст для блоку героя */
+    }
+    .highlight {
+        font-weight: bold;
+        transition: color 0.3s ease;
+    }
+</style>
 </head>
-<body>
+<>
      <!-- Навігація -->
      <nav>
         <h1 class="text-xl font-bold text-white">FSMP 114</h1>
@@ -192,8 +263,8 @@
     <section id="home" class="hero">
         <canvas id="phone-canvas"></canvas>
         <div class="hero-content">
-            <h1 class="text-5xl md:text-6xl font-bold mb-4 text-white">FSMP 114 — Разом до здорового життя без залежності від гаджетів!</h1>
-            <p class="text-lg md:text-xl mb-6 text-gray-300">Вітаємо на сайті нашого соціального проєкту!</p>
+            <h1 class="text-5xl md:text-6xl font-bold mb-4 text-black">FSMP 114 — Разом до здорового життя - без залежності від гаджетів!</h1>
+            <p class="text-lg md:text-xl mb-6 text-black">Вітаємо на сайті нашого соціального проєкту!</p>
             <a href="recommendations.html" class="btn">Дізнайтесь більше</a>
         </div>
     </section>
@@ -236,7 +307,7 @@
     <!-- Процес роботи -->
     <section class="section bg-gray-900">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-6 parallax">Як ми це робили?</h2>
+            <h2 class="text-3xl font-bold text-center text-white mb-6 parallax">Як ми це робили?</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <a href="details/experts.html" class="card block">
                     <span class="emoji">📚</span>
@@ -274,6 +345,7 @@
 
     <!-- Three.js для 3D-смартфона -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three/examples/js/geometries/RoundedBoxGeometry.js"></script>
     <script>
         // Плавна прокрутка для навігації
         document.querySelectorAll('nav a').forEach(anchor => {
@@ -299,7 +371,8 @@
         const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
 
-        const geometry = new THREE.BoxGeometry(2, 4, 0.2); // Смартфон
+        // Використання RoundedBoxGeometry для округлих країв
+        const geometry = new THREE.RoundedBoxGeometry(2, 4, 0.2, 10, 0.2); // Ширина, висота, глибина, сегменти, радіус округлення
         const material = new THREE.MeshPhongMaterial({ color: 0x10b981, shininess: 100 });
         const phone = new THREE.Mesh(geometry, material);
         scene.add(phone);
@@ -326,13 +399,83 @@
         });
     </script>
     <script>
-        // Логіка для кнопки-бургера
-        const burger = document.getElementById('burger');
-        const menu = document.getElementById('menu');
+    // Логіка для кнопки-бургера
+    const burger = document.getElementById('burger');
+    const menu = document.getElementById('menu');
+
+    burger.addEventListener('click', () => {
+        menu.classList.toggle('active'); // Додає або видаляє клас 'active' для меню
+    });
+</script>
+<script>
+    // Логіка для кнопки перемикання теми
+    const themeToggle = document.createElement('div');
+    themeToggle.id = 'theme-toggle';
+    themeToggle.className = 'theme-toggle dark';
+    themeToggle.innerHTML = `
+        <span class="icon sun">☀️</span>
+        <span class="icon moon">🌙</span>
+        <div class="toggle-icon"></div>
+    `;
+    document.querySelector('nav').appendChild(themeToggle);
+
+    const body = document.body;
+    const hero = document.querySelector('.hero');
+    const heroContent = document.querySelector('.hero-content');
+    const cards = document.querySelectorAll('.card');
+    const nav = document.querySelector('nav');
+    const footer = document.querySelector('footer');
+    const importantText = document.querySelectorAll('.highlight');
+    const textElements = document.querySelectorAll('h2, h3, p, a, span'); // Вибір усіх текстових елементів
+
+    // Ініціалізація теми
+    let isDark = true;
+  
     
-        burger.addEventListener('click', () => {
-            menu.classList.toggle('active'); // Додає або видаляє клас 'active' для меню
-        });
-    </script>
+    themeToggle.addEventListener('click', () => {
+        isDark = !isDark;
+        if (isDark) {
+            // Темна тема
+            body.classList.add('dark');
+            body.classList.remove('light');
+            themeToggle.classList.add('dark');
+            themeToggle.classList.remove('light');
+            hero.style.background = 'linear-gradient(135deg, #1e3a8a, #10b981)'; // Темний фон
+            heroContent.style.background = 'rgba(0, 0, 0, 0.5)';
+            heroContent.style.color = '#e2e8f0'; // Світлий текст
+            nav.style.background = 'rgba(15, 23, 42, 0.9)';
+            nav.style.color = '#e2e8f0';
+            footer.style.background = '#1e293b';
+            footer.style.color = '#94a3b8';
+            cards.forEach(card => {
+                card.style.background = '#1e293b';
+                card.style.color = '#e2e8f0';
+            });
+            importantText.forEach(text => {
+                text.style.color = '#10b981'; // Зелений для важливих моментів
+            });
+        } else {
+            // Світла тема
+            body.classList.add('light');
+            body.classList.remove('dark');
+            themeToggle.classList.add('light');
+            themeToggle.classList.remove('dark');
+            hero.style.background = 'linear-gradient(135deg, #fbbf24, #f87171)'; // Жовтий фон телефону
+            heroContent.style.background = 'rgba(255, 255, 255, 0.8)';
+            heroContent.style.color = '#000000'; // Чорний текст
+            nav.style.background = 'rgba(255, 255, 255, 0.9)';
+            nav.style.color = '#000000';
+            footer.style.background = '#ffffff';
+            footer.style.color = '#000000';
+            cards.forEach(card => {
+                card.style.background = '#ffffff';
+                card.style.color = '#000000';
+            });
+            importantText.forEach(text => {
+                text.style.color = '#f87171'; // Червоний для важливих моментів
+            });
+        }
+    });
+</script>
 </body>
 </html>
