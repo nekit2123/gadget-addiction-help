@@ -256,6 +256,7 @@
             <a href="about.html">Про нас</a>
             <a href="recommendations.html">Рекомендації</a>
             <a href="contacts.html">Контакти</a>
+            <a href="team.html">Наша Команда</a>
         </div>
     </nav>
 
@@ -337,6 +338,121 @@
             </div>
         </div>
     </section>
+
+    <!-- Анимированная приветственная надпись -->
+<div id="intro-overlay">
+    <div class="intro-text">
+        Факультет Судового та Міжнародного права<br>
+        1 Курс 1 потік 4 група представляє
+    </div>
+</div>
+
+<style>
+#intro-overlay {
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    background: linear-gradient(135deg, #1e3a8a 60%, #10b981 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1.2s cubic-bezier(.4,2,.6,1), transform 1.2s cubic-bezier(.4,2,.6,1);
+    will-change: opacity, transform;
+    pointer-events: auto;
+}
+.intro-text {
+    color: #fff;
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.3;
+    letter-spacing: 1px;
+    text-shadow: 0 4px 32px #000a, 0 1px 0 #10b981;
+    animation: introFadeIn 2s cubic-bezier(.4,2,.6,1);
+    background: rgba(30,41,59,0.7);
+    border-radius: 20px;
+    padding: 2.5rem 1.5rem;
+    box-shadow: 0 8px 40px #0007;
+}
+@keyframes introFadeIn {
+    0% { opacity: 0; transform: translateY(80px) scale(0.95);}
+    100% { opacity: 1; transform: translateY(0) scale(1);}
+}
+@keyframes introFadeOut {
+    0% { opacity: 1; transform: translateY(0) scale(1);}
+    100% { opacity: 0; transform: translateY(-120px) scale(0.98);}
+}
+body.hide-content main,
+body.hide-content section,
+body.hide-content .hero,
+body.hide-content .section,
+body.hide-content footer,
+body.hide-content nav {
+    opacity: 0 !important;
+    pointer-events: none;
+    transition: opacity 1.2s cubic-bezier(.4,2,.6,1);
+}
+body.show-content main,
+body.show-content section,
+body.show-content .hero,
+body.show-content .section,
+body.show-content footer,
+body.show-content nav {
+    opacity: 1 !important;
+    transition: opacity 1.2s cubic-bezier(.4,2,.6,1);
+    animation: contentFadeIn 1.2s cubic-bezier(.4,2,.6,1);
+}
+@keyframes contentFadeIn {
+    0% { opacity: 0; transform: translateY(80px);}
+    100% { opacity: 1; transform: translateY(0);}
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const overlay = document.getElementById('intro-overlay');
+    let isHidden = false;
+    let ticking = false;
+
+    // Скрыть содержимое при загрузке
+    document.body.classList.add('hide-content');
+    document.body.classList.remove('show-content');
+
+    function showContent() {
+        overlay.style.animation = 'introFadeOut 1.2s forwards cubic-bezier(.4,2,.6,1)';
+        document.body.classList.remove('hide-content');
+        document.body.classList.add('show-content');
+        isHidden = true;
+    }
+    function showOverlay() {
+        overlay.style.opacity = '1';
+        overlay.style.transform = 'translateY(0)';
+        overlay.style.animation = 'introFadeIn 1.2s forwards cubic-bezier(.4,2,.6,1)';
+        document.body.classList.add('hide-content');
+        document.body.classList.remove('show-content');
+        isHidden = false;
+    }
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                const scrollY = window.scrollY || window.pageYOffset;
+                if (scrollY > 30 && !isHidden) {
+                    showContent();
+                } else if (scrollY <= 10 && isHidden) {
+                    showOverlay();
+                }
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+
+    overlay.addEventListener('click', () => {
+        showContent();
+        window.scrollTo({top: 40, behavior: 'smooth'});
+    });
+});
+</script>
 
     <!-- Футер -->
     <footer>
@@ -430,7 +546,6 @@
 
     // Ініціалізація теми
     let isDark = true;
-  
     
     themeToggle.addEventListener('click', () => {
         isDark = !isDark;
