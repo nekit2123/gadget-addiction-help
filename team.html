@@ -109,6 +109,10 @@
             background: #111827;
             border-top: 1px solid #23304a;
             transition: color 0.3s;
+            width: 100%;         /* Добавьте эту строку */
+            display: block;      /* И эту строку */
+            box-sizing: border-box; /* И эту строку */
+            word-break: break-word; /* Чтобы длинные слова переносились */
         }
         .team-card:hover .team-name {
             color: #fbbf24;
@@ -140,10 +144,12 @@
     <section class="team-section">
         <h2 class="text-3xl font-bold text-center mb-10">Наша Команда</h2>
         <div class="team-grid">
-            <a href="memberfolder/member1.html" class="team-card">
+            <div class="team-card">
+                <a href="memberfolder/member1.html" class="team-card">
                 <img src="assets/team/p_1.jpg" alt="Фото 1" class="team-photo">
                 <div class="team-name">Парубець Валерія Олександрівна</div>
-            </a>
+                </a>
+            </div>
             <div class="team-card">
                 <a href="memberfolder/member2.html" class="team-card">
                 <img src="assets/team/p_2.jpg" alt="Фото 2" class="team-photo">
@@ -153,37 +159,46 @@
             <div class="team-card">
                 <a href="memberfolder/member3.html" class="team-card">
                 <img src="assets/team/p_3.jpg" alt="Фото 3" class="team-photo">
-                <div class="team-name">Сидоренко Максим</div>
+                <div class="team-name">Юзефович Олександра Олександрівна</div>
                 </a>
             </div>
             <div class="team-card">
                 <a href="memberfolder/member4.html" class="team-card">
                 <img src="assets/team/p_4.jpg" alt="Фото 4" class="team-photo">
-                <div class="team-name">Коваленко Марія</div>
-                
+                <div class="team-name">
+                    Зуб Ангеліна Романівна
+                    <span style="opacity:0;">Додатковий текст</span>
+                </div>
+                </a>
             </div>
             <div class="team-card">
                 <a href="memberfolder/member5.html" class="team-card">
                 <img src="assets/team/p_5.jpg" alt="Фото 5" class="team-photo">
-                <div class="team-name">Гриценко Андрій</div>
+                <div class="team-name">Баранова Марʼяна Володимирівна</div>
                 </a>
             </div>
             <div class="team-card">
                 <a href="memberfolder/member6.html" class="team-card">
                 <img src="assets/team/p_6.jpg" alt="Фото 6" class="team-photo">
-                <div class="team-name">Шевченко Дарина</div>
+                <div class="team-name">Слободянюк Анастасія Віталіївна</div>
                 </a>
             </div>
             <div class="team-card">
                 <a href="memberfolder/member7.html" class="team-card">
                 <img src="assets/team/p_7.jpg" alt="Фото 7" class="team-photo">
-                <div class="team-name">Мельник Олексій</div>
+                <div class="team-name">
+                    Чалюк Софія Сергіївна
+                    <span style="opacity:0;">Додатковий текст</span>
+                </div>
                 </a>
             </div>
             <div class="team-card">
                 <a href="memberfolder/member8.html" class="team-card">
                 <img src="assets/team/p_8.jpg" alt="Фото 8" class="team-photo">
-                <div class="team-name">Бондаренко Юлія</div>
+                <div class="team-name">
+                    Мошна Дмитро Віталійович
+                    <span style="opacity:0;">Додатковий текст</span>
+                </div>
                 </a>
             </div>
             <div class="team-card">
