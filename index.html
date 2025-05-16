@@ -166,6 +166,10 @@
             0% { opacity: 0; transform: translateY(60px) scale(0.95);}
             100% { opacity: 1; transform: translateY(0) scale(1);}
         }
+        @keyframes waveTitleX {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
         @media (max-width: 640px) {
             .hero h1 { font-size: 2.5rem; }
             .hero p { font-size: 1rem; }
@@ -257,7 +261,7 @@
         </div>
         <div class="menu" id="menu">
             <a href="index.html">Головна</a>
-            <a href="about.html">Про нас</a>
+            <a href="about.html">Інформаційна база</a>
             <a href="recommendations.html">Рекомендації</a>
             <a href="contacts.html">Контакти</a>
             <a href="team.html">Наша Команда</a>
@@ -290,7 +294,20 @@
     <section id="home" class="hero">
         <canvas id="phone-canvas"></canvas>
         <div class="hero-content">
-            <h1 class="text-5xl md:text-6xl font-bold mb-4 text-black">FSMP 114 — Разом до здорового життя - без залежності від гаджетів!</h1>
+            <h1 class="text-5xl md:text-6xl font-bold mb-4 text-black"
+    style="
+        background: linear-gradient(90deg, #60a5fa 0%, #60a5fa 35%, #FFD700 65%, #FFD700 100%);
+        background-size: 300% 100%;
+        background-position: 0% 50%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 32px #FFD700, 0 0 24px #60a5fa, 0 0 8px #60a5fa;
+        animation: waveTitleX 4s linear infinite;
+        display: inline-block;
+    ">
+    FSMP 114 — Разом до здорового життя - без залежності від гаджетів!
+</h1>
             <p class="text-lg md:text-xl mb-6 text-black">Вітаємо на сайті нашого соціального проєкту!</p>
             <a href="recommendations.html" class="btn">Дізнайтесь більше</a>
         </div>
