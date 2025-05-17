@@ -80,6 +80,10 @@
             padding: 2rem;
             color: #94a3b8;
         }
+        @keyframes waveTitle {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
     </style>
 </head>
 <body>
@@ -102,25 +106,40 @@
 
     <!-- Рекомендації -->
     <section class="section bg-gray-900 py-20">
-        <h2 class="text-3xl font-bold text-center mb-6 text-white">Рекомендації щодо зменшення залежності</h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="contact-card p-4 bg-gray-800 rounded-lg shadow">
+        <div class="flex justify-center">
+            <h2 class="text-4xl font-bold text-center mb-8"
+                style="
+                    background: linear-gradient(135deg, #60a5fa 40%, #FFD700 60%);
+                    background-size: 200% 200%;
+                    background-position: 0% 50%;
+                    -webkit-background-clip: text;
+                    background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    text-shadow: 0 0 16px #60a5fa, 0 0 32px #FFD700;
+                    animation: waveTitle 3s infinite linear alternate;
+                    display: inline-block;
+                ">
+                Рекомендації щодо зменшення залежності
+            </h2>
+        </div>
+        <div class="flex flex-wrap justify-center gap-6">
+            <div class="contact-card p-4 bg-gray-800 rounded-lg shadow max-w-xs w-full">
                 <h3 class="text-xl font-semibold mb-2 text-white">Обмежте час використання</h3>
                 <p class="text-gray-300">Встановіть ліміт на час, проведений за гаджетами. Використовуйте таймери або спеціальні додатки для контролю.</p>
             </div>
-            <div class="contact-card p-4 bg-gray-800 rounded-lg shadow">
+            <div class="contact-card p-4 bg-gray-800 rounded-lg shadow max-w-xs w-full">
                 <h3 class="text-xl font-semibold mb-2 text-white">Створіть зони без гаджетів</h3>
                 <p class="text-gray-300">Визначте місця, де гаджети заборонені, наприклад, спальня чи обідній стіл.</p>
             </div>
-            <div class="contact-card p-4 bg-gray-800 rounded-lg shadow">
+            <div class="contact-card p-4 bg-gray-800 rounded-lg shadow max-w-xs w-full">
                 <h3 class="text-xl font-semibold mb-2 text-white">Займайтесь хобі</h3>
                 <p class="text-gray-300">Знайдіть заняття, яке відволікатиме від гаджетів: спорт, читання, малювання чи прогулянки.</p>
             </div>
-            <div class="contact-card p-4 bg-gray-800 rounded-lg shadow">
+            <div class="contact-card p-4 bg-gray-800 rounded-lg shadow max-w-xs w-full">
                 <h3 class="text-xl font-semibold mb-2 text-white">Спілкуйтесь офлайн</h3>
                 <p class="text-gray-300">Проводьте більше часу з друзями та родиною без використання телефонів.</p>
             </div>
-            <div class="contact-card p-4 bg-gray-800 rounded-lg shadow">
+            <div class="contact-card p-4 bg-gray-800 rounded-lg shadow max-w-xs w-full">
                 <h3 class="text-xl font-semibold mb-2 text-white">Слідкуйте за сном</h3>
                 <p class="text-gray-300">Уникайте гаджетів за 1-2 години до сну, щоб покращити якість відпочинку.</p>
             </div>
@@ -129,7 +148,22 @@
 
     <!-- Наша презентація -->
     <section class="section bg-gray-900 py-20">
-        <h2 class="text-3xl font-bold text-center mb-6 text-white">Наша презентація</h2>
+        <div class="flex justify-center">
+            <h2 class="text-4xl font-bold text-center mb-8"
+                style="
+                    background: linear-gradient(135deg, #60a5fa 40%, #FFD700 60%);
+                    background-size: 200% 200%;
+                    background-position: 0% 50%;
+                    -webkit-background-clip: text;
+                    background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    text-shadow: 0 0 16px #60a5fa, 0 0 32px #FFD700;
+                    animation: waveTitle 3s infinite linear alternate;
+                    display: inline-block;
+                ">
+                Наша презентація
+            </h2>
+        </div>
         <div class="flex justify-center">
             <iframe src="https://docs.google.com/presentation/d/1LR-ob9BwMrDDwYMeBpwD6U1Kaj1UY3AO/preview"
                 width="100%" height="600"
@@ -148,7 +182,22 @@
 
     <!-- Блок с просьбой пройти тест -->
     <section class="section bg-gray-900 py-12">
-        <h2 class="text-2xl font-bold text-center mb-4 text-white">Просимо пройти короткий тест</h2>
+        <div class="flex justify-center">
+            <h2 class="text-3xl font-bold text-center mb-6"
+                style="
+                    background: linear-gradient(135deg, #60a5fa 40%, #FFD700 60%);
+                    background-size: 200% 200%;
+                    background-position: 0% 50%;
+                    -webkit-background-clip: text;
+                    background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    text-shadow: 0 0 16px #60a5fa, 0 0 32px #FFD700;
+                    animation: waveTitle 3s infinite linear alternate;
+                    display: inline-block;
+                ">
+                Просимо пройти короткий тест
+            </h2>
+        </div>
         <p class="text-center text-gray-300 mb-6" style="font-size:1.15rem;">
             Ваші відповіді допоможуть нам краще зрозуміти проблему та зробити наші рекомендації ще кориснішими!
         </p>

@@ -344,6 +344,9 @@
                 <img src="assets/images/photo1.jpg" alt="Фото 1" class="gallery-img rounded-lg shadow-lg">
                 <img src="assets/images/photo2.jpg" alt="Фото 2" class="gallery-img rounded-lg shadow-lg">
                 <img src="assets/images/photo3.jpg" alt="Фото 3" class="gallery-img rounded-lg shadow-lg">
+                <img src="assets/images/photo4.jpg" alt="Фото 4" class="gallery-img rounded-lg shadow-lg">
+                <img src="assets/images/photo5.jpg" alt="Фото 5" class="gallery-img rounded-lg shadow-lg">
+                <img src="assets/images/photo6.jpg" alt="Фото 6" class="gallery-img rounded-lg shadow-lg">
             </div>
         </div>
     </section>
@@ -449,75 +452,6 @@
 
     burger.addEventListener('click', () => {
         menu.classList.toggle('active'); // Додає або видаляє клас 'active' для меню
-    });
-</script>
-<script>
-    // Логіка для кнопки перемикання теми
-    const themeToggle = document.createElement('div');
-    themeToggle.id = 'theme-toggle';
-    themeToggle.className = 'theme-toggle dark';
-    themeToggle.innerHTML = `
-        <span class="icon sun">☀️</span>
-        <span class="icon moon">🌙</span>
-        <div class="toggle-icon"></div>
-    `;
-    document.querySelector('nav').appendChild(themeToggle);
-
-    const body = document.body;
-    const hero = document.querySelector('.hero');
-    const heroContent = document.querySelector('.hero-content');
-    const cards = document.querySelectorAll('.card');
-    const nav = document.querySelector('nav');
-    const footer = document.querySelector('footer');
-    const importantText = document.querySelectorAll('.highlight');
-    const textElements = document.querySelectorAll('h2, h3, p, a, span'); // Вибір усіх текстових елементів
-
-    // Ініціалізація теми
-    let isDark = true;
-    
-    themeToggle.addEventListener('click', () => {
-        isDark = !isDark;
-        if (isDark) {
-            // Темна тема
-            body.classList.add('dark');
-            body.classList.remove('light');
-            themeToggle.classList.add('dark');
-            themeToggle.classList.remove('light');
-            hero.style.background = 'linear-gradient(135deg, #1e3a8a, #10b981)'; // Темний фон
-            heroContent.style.background = 'rgba(0, 0, 0, 0.5)';
-            heroContent.style.color = '#e2e8f0'; // Світлий текст
-            nav.style.background = 'rgba(15, 23, 42, 0.9)';
-            nav.style.color = '#e2e8f0';
-            footer.style.background = '#1e293b';
-            footer.style.color = '#94a3b8';
-            cards.forEach(card => {
-                card.style.background = '#1e293b';
-                card.style.color = '#e2e8f0';
-            });
-            importantText.forEach(text => {
-                text.style.color = '#10b981'; // Зелений для важливих моментів
-            });
-        } else {
-            // Світла тема
-            body.classList.add('light');
-            body.classList.remove('dark');
-            themeToggle.classList.add('light');
-            themeToggle.classList.remove('dark');
-            hero.style.background = 'linear-gradient(135deg, #fbbf24, #f87171)'; // Жовтий фон телефону
-            heroContent.style.background = 'rgba(255, 255, 255, 0.8)';
-            heroContent.style.color = '#000000'; // Чорний текст
-            nav.style.background = 'rgba(255, 255, 255, 0.9)';
-            nav.style.color = '#000000';
-            footer.style.background = '#ffffff';
-            footer.style.color = '#000000';
-            cards.forEach(card => {
-                card.style.background = '#ffffff';
-                card.style.color = '#000000';
-            });
-            importantText.forEach(text => {
-                text.style.color = '#f87171'; // Червоний для важливих моментів
-            });
-        }
     });
 </script>
 </body>
